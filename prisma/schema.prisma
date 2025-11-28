@@ -1,0 +1,57 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admins")
+}
+
+model Response {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Section I: Informations Générales
+  clubName             String
+  respondentRole       String
+  otherRole            String?
+  hasLabel             String // Oui, Non, En cours de démarche, Je ne sais pas
+  wantsLabelSupport    String? // Oui, Non
+
+  // Section II: Expérience d'Accueil
+  hasWelcomedDisabled  String // Oui, Non
+  handicapTypes        String[] // Array of selected handicap types
+  otherHandicapType    String?
+  publicTypes          String[] // Enfants/Mineurs, Adultes
+  adaptationStory      String? // Text libre pour partager l'expérience
+
+  // Section III: Besoins et Attentes
+  supportExpectations  Json // Array avec ordre de priorité
+  otherExpectation     String?
+
+  // Matériel adapté
+  adaptedMaterial      String[] // Pendules, Échiquiers, Notation, Non, Autre
+  otherMaterial        String?
+
+  // Accès souhaités
+  desiredAccess        String[] // Référent, Liste professionnels, Documents, Formations, Rien
+
+  // Autres difficultés
+  additionalComments   String?
+
+  @@map("responses")
+}
