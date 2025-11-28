@@ -10,12 +10,13 @@ datasource db {
 }
 
 model Admin {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(cuid())
+  email       String   @unique
+  password    String
+  name        String?
+  isSuperAdmin Boolean @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@map("admins")
 }
@@ -24,6 +25,12 @@ model Response {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // Informations du répondant
+  respondentFirstName  String
+  respondentLastName   String
+  respondentEmail      String
+  respondentPhone      String?
 
   // Section I: Informations Générales
   clubName             String

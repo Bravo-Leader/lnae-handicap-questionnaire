@@ -5,6 +5,12 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
 type FormData = {
+  // Personal Info
+  respondentFirstName: string
+  respondentLastName: string
+  respondentEmail: string
+  respondentPhone?: string
+
   // Section I
   clubName: string
   respondentRole: string
@@ -76,7 +82,7 @@ const accessOptions = [
 export default function QuestionnairePage() {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [currentSection, setCurrentSection] = useState(1)
+  const [currentSection, setCurrentSection] = useState(0)
   const { register, handleSubmit, watch, formState: { errors } } = useForm<FormData>()
 
   const watchRole = watch('respondentRole')
@@ -120,14 +126,17 @@ export default function QuestionnairePage() {
         {/* Progress Steps */}
         <div className="mb-8">
           <ul className="steps w-full">
+            <li className={`step ${currentSection >= 0 ? 'step-primary' : ''}`}>
+              Vos informations
+            </li>
             <li className={`step ${currentSection >= 1 ? 'step-primary' : ''}`}>
-              Informations générales
+              Informations club
             </li>
             <li className={`step ${currentSection >= 2 ? 'step-primary' : ''}`}>
-              Expérience d'accueil
+              Expérience
             </li>
             <li className={`step ${currentSection >= 3 ? 'step-primary' : ''}`}>
-              Besoins et attentes
+              Besoins
             </li>
           </ul>
         </div>
@@ -135,6 +144,111 @@ export default function QuestionnairePage() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="card bg-base-100 shadow-xl">
             <div className="card-body">
+              {/* Section 0: Personal Information */}
+              {currentSection === 0 && (
+                <div className="space-y-6">
+                  <h2 className="text-2xl font-bold mb-6">
+                    Vos Informations Personnelles
+                  </h2>
+
+                  <div className="alert alert-info mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span>Ces informations nous permettront de vous recontacter si nécessaire.</span>
+                  </div>
+
+                  {/* Prénom */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text font-semibold">Prénom *</span>
+                    </label>
+                    <input
+                      type="text"
+                      {...register('respondentFirstName', { required: 'Le prénom est requis' })}
+                      className="input input-bordered w-full"
+                      placeholder="Jean"
+                    />
+                    {errors.respondentFirstName && (
+                      <label className="label">
+                        <span className="label-text-alt text-error">
+                          {errors.respondentFirstName.message}
+                        </span>
+                      </label>
+                    )}
+                  </div>
+
+                  {/* Nom */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text font-semibold">Nom *</span>
+                    </label>
+                    <input
+                      type="text"
+                      {...register('respondentLastName', { required: 'Le nom est requis' })}
+                      className="input input-bordered w-full"
+                      placeholder="Dupont"
+                    />
+                    {errors.respondentLastName && (
+                      <label className="label">
+                        <span className="label-text-alt text-error">
+                          {errors.respondentLastName.message}
+                        </span>
+                      </label>
+                    )}
+                  </div>
+
+                  {/* Email */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text font-semibold">Email *</span>
+                    </label>
+                    <input
+                      type="email"
+                      {...register('respondentEmail', {
+                        required: 'L\'email est requis',
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          message: 'Email invalide'
+                        }
+                      })}
+                      className="input input-bordered w-full"
+                      placeholder="jean.dupont@example.com"
+                    />
+                    {errors.respondentEmail && (
+                      <label className="label">
+                        <span className="label-text-alt text-error">
+                          {errors.respondentEmail.message}
+                        </span>
+                      </label>
+                    )}
+                  </div>
+
+                  {/* Téléphone */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text font-semibold">Téléphone (optionnel)</span>
+                    </label>
+                    <input
+                      type="tel"
+                      {...register('respondentPhone')}
+                      className="input input-bordered w-full"
+                      placeholder="06 12 34 56 78"
+                    />
+                  </div>
+
+                  <div className="card-actions justify-end mt-6">
+                    <button
+                      type="button"
+                      onClick={() => setCurrentSection(1)}
+                      className="btn btn-primary"
+                    >
+                      Suivant
+                    </button>
+                  </div>
+                </div>
+              )}
+
               {/* Section I: Informations Générales */}
               {currentSection === 1 && (
                 <div className="space-y-6">
@@ -259,7 +373,14 @@ export default function QuestionnairePage() {
                     </div>
                   )}
 
-                  <div className="card-actions justify-end mt-6">
+                  <div className="card-actions justify-between mt-6">
+                    <button
+                      type="button"
+                      onClick={() => setCurrentSection(0)}
+                      className="btn btn-outline"
+                    >
+                      Précédent
+                    </button>
                     <button
                       type="button"
                       onClick={() => setCurrentSection(2)}

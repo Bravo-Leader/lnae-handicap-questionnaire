@@ -5,20 +5,27 @@ Application web moderne pour la Commission Handicap de la Ligue Nouvelle-Aquitai
 ## 🎯 Fonctionnalités
 
 ### Pour les clubs
-- **Questionnaire interactif** avec progression par étapes
+- **Questionnaire interactif** avec progression par étapes (4 sections)
+- **Collecte des informations personnelles** : nom, prénom, email, téléphone
 - Interface moderne et responsive avec DaisyUI
 - Validation des formulaires
 - Page de remerciement après soumission
 
 ### Pour les administrateurs
-- **Panneau d'administration sécurisé** avec authentification
+- **Panneau d'administration sécurisé** avec authentification JWT
 - **3 modes de visualisation** :
-  - 📋 Vue Liste : Tableau détaillé avec recherche et filtres
+  - 📋 Vue Liste : Tableau détaillé avec recherche par nom/club/email
   - 🎴 Vue Cartes : Affichage en grille avec filtres avancés
   - 📊 Vue Statistiques : Graphiques interactifs et analyses
+- **Informations de contact** : Accès aux coordonnées des répondants
 - **Analyses et interprétations** automatiques des données
 - **Export des données** en JSON et CSV
 - Graphiques variés : camemberts, barres, statistiques détaillées
+
+### Pour les super administrateurs
+- **Panneau de gestion des admins** : Créer, visualiser et supprimer des comptes
+- **Gestion des rôles** : Attribution des privilèges super admin
+- **Sécurité renforcée** : Accès restreint aux fonctions sensibles
 
 ## 🛠️ Stack Technique
 
@@ -110,49 +117,32 @@ L'application sera accessible sur http://localhost:3000
 
 ## 🔐 Créer un compte administrateur
 
-### Méthode rapide (Prisma Studio)
+### Méthode recommandée (Script automatisé)
+
+Le projet inclut un script pour créer facilement des comptes administrateurs.
+
+**Créer un admin standard :**
+```bash
+ADMIN_EMAIL="admin@example.com" ADMIN_PASSWORD="VotreMotDePasse123!" ADMIN_NAME="Nom Admin" node scripts/create-admin.js
+```
+
+**Créer un super admin :**
+```bash
+ADMIN_EMAIL="superadmin@example.com" ADMIN_PASSWORD="MotDePasseSecurisé!" ADMIN_NAME="Hugues GIRAUD" IS_SUPER_ADMIN=true node scripts/create-admin.js
+```
+
+### Méthode alternative (Prisma Studio)
 
 ```bash
 npm run prisma:studio
 ```
 
 1. Ouvrir la table `admins`
-2. Ajouter un nouvel enregistrement
-3. Pour le password, utilisez un hash bcrypt (vous pouvez en générer un sur https://bcrypt-generator.com/)
-
-### Avec un script Node.js
-
-Créez un fichier `scripts/create-admin.js` :
-
-```javascript
-const { PrismaClient } = require('@prisma/client')
-const bcrypt = require('bcryptjs')
-
-const prisma = new PrismaClient()
-
-async function main() {
-  const password = await bcrypt.hash('VotreMotDePasse123!', 10)
-
-  const admin = await prisma.admin.create({
-    data: {
-      email: 'admin@echecs-nouvelleaquitaine.fr',
-      name: 'Hugues GIRAUD',
-      password: password,
-    },
-  })
-
-  console.log('Admin créé:', admin)
-}
-
-main()
-  .catch(console.error)
-  .finally(() => prisma.$disconnect())
-```
-
-Puis exécutez :
-```bash
-node scripts/create-admin.js
-```
+2. Ajouter un nouvel enregistrement avec :
+   - **email** : votre email
+   - **password** : hash bcrypt (générez-en un sur https://bcrypt-generator.com/)
+   - **name** : votre nom
+   - **isSuperAdmin** : true ou false selon les privilèges souhaités
 
 ## 📖 Utilisation
 
@@ -166,13 +156,30 @@ Rendez-vous sur http://localhost:3000 et cliquez sur "Commencer le questionnaire
 
 ### Navigation dans l'admin
 
-- **Vue Liste** : Recherche par nom de club, détails complets en modal
-- **Vue Cartes** : Filtres par label et expérience, vue d'ensemble rapide
+- **Vue Liste** :
+  - Recherche par nom de club, nom du répondant ou email
+  - Détails complets en modal avec informations de contact
+  - Tri et filtrage
+
+- **Vue Cartes** :
+  - Filtres par label et expérience
+  - Vue d'ensemble rapide de chaque réponse
+  - Affichage des besoins principaux
+
 - **Vue Statistiques** :
-  - Analyses et recommandations
-  - Graphiques interactifs
+  - Analyses et recommandations automatiques
+  - Graphiques interactifs (camemberts, barres)
   - Statistiques détaillées
-  - Export des données
+  - Export des données (JSON, CSV)
+
+### Panneau Super Admin (pour les super administrateurs)
+
+Les super administrateurs ont accès à un panneau supplémentaire :
+
+1. Dans le dashboard, cliquer sur **"Gestion Admins"**
+2. Créer de nouveaux comptes administrateurs (standard ou super admin)
+3. Visualiser tous les comptes existants
+4. Supprimer des comptes (sauf le sien)
 
 ## 🚀 Déploiement en production
 

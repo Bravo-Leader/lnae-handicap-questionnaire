@@ -7,6 +7,12 @@ export async function POST(request: NextRequest) {
 
     const response = await prisma.response.create({
       data: {
+        // Personal Info
+        respondentFirstName: data.respondentFirstName,
+        respondentLastName: data.respondentLastName,
+        respondentEmail: data.respondentEmail,
+        respondentPhone: data.respondentPhone || null,
+
         // Section I
         clubName: data.clubName,
         respondentRole: data.respondentRole,

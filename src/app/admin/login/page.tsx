@@ -26,6 +26,7 @@ export default function AdminLoginPage() {
 
       if (response.ok) {
         localStorage.setItem('adminToken', data.token)
+        localStorage.setItem('adminData', JSON.stringify(data.admin))
         router.push('/admin/dashboard')
       } else {
         setError(data.error || 'Identifiants incorrects')

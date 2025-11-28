@@ -26,12 +26,18 @@ export default function AdminDashboard() {
   const [isLoading, setIsLoading] = useState(true)
   const [view, setView] = useState<'list' | 'cards' | 'stats'>('list')
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isSuperAdmin, setIsSuperAdmin] = useState(false)
 
   useEffect(() => {
     const token = localStorage.getItem('adminToken')
     if (!token) {
       router.push('/admin/login')
       return
+    }
+    const adminData = localStorage.getItem('adminData')
+    if (adminData) {
+      const admin = JSON.parse(adminData)
+      setIsSuperAdmin(admin.isSuperAdmin || false)
     }
     setIsAuthenticated(true)
     fetchResponses(token)
@@ -56,6 +62,7 @@ export default function AdminDashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem('adminToken')
+    localStorage.removeItem('adminData')
     router.push('/admin/login')
   }
 
@@ -75,9 +82,22 @@ export default function AdminDashboard() {
               </h1>
               <p className="text-gray-600">Commission Handicap - Questionnaires</p>
             </div>
-            <button onClick={handleLogout} className="btn btn-outline btn-error">
-              Déconnexion
-            </button>
+            <div className="flex gap-2">
+              {isSuperAdmin && (
+                <button
+                  onClick={() => router.push('/admin/super')}
+                  className="btn btn-primary btn-outline"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                  Gestion Admins
+                </button>
+              )}
+              <button onClick={handleLogout} className="btn btn-outline btn-error">
+                Déconnexion
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -6,7 +6,8 @@ const prisma = new PrismaClient()
 async function main() {
   const email = process.env.ADMIN_EMAIL || 'admin@echecs-nouvelleaquitaine.fr'
   const passwordPlain = process.env.ADMIN_PASSWORD || 'ChangeThis123!'
-  const name = 'Administrateur'
+  const name = process.env.ADMIN_NAME || 'Administrateur'
+  const isSuperAdmin = process.env.IS_SUPER_ADMIN === 'true'
 
   console.log('🔐 Création d\'un compte administrateur...\n')
 
@@ -32,6 +33,7 @@ async function main() {
       email,
       name,
       password,
+      isSuperAdmin,
     },
   })
 
@@ -39,6 +41,7 @@ async function main() {
   console.log('📧 Email:', admin.email)
   console.log('👤 Nom:', admin.name)
   console.log('🔑 Mot de passe:', passwordPlain)
+  console.log('🔐 Super Admin:', isSuperAdmin ? 'Oui' : 'Non')
   console.log('\n⚠️  IMPORTANT: Changez ce mot de passe après la première connexion!\n')
   console.log('🔗 Connexion: http://localhost:3000/admin/login\n')
 }

@@ -23,7 +23,10 @@ export default function ResponseList({ responses }: { responses: Response[] }) {
   const [searchTerm, setSearchTerm] = useState('')
 
   const filteredResponses = responses.filter((r) =>
-    r.clubName.toLowerCase().includes(searchTerm.toLowerCase())
+    r.clubName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    r.respondentFirstName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    r.respondentLastName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    r.respondentEmail?.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   return (
@@ -34,7 +37,7 @@ export default function ResponseList({ responses }: { responses: Response[] }) {
           <div className="form-control mb-4">
             <input
               type="text"
-              placeholder="Rechercher un club..."
+              placeholder="Rechercher par club, nom, ou email..."
               className="input input-bordered"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -115,13 +118,44 @@ export default function ResponseList({ responses }: { responses: Response[] }) {
             <h3 className="font-bold text-2xl mb-4">{selectedResponse.clubName}</h3>
 
             <div className="space-y-4">
-              {/* Section I */}
-              <div className="divider">Informations Générales</div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-sm text-gray-500">Fonction du répondant</p>
-                  <p className="font-semibold">{selectedResponse.respondentRole}</p>
+              {/* Informations du Répondant */}
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h4 className="font-bold text-lg mb-3">Informations de Contact</h4>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-500">Nom Complet</p>
+                    <p className="font-semibold">
+                      {selectedResponse.respondentFirstName} {selectedResponse.respondentLastName}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500">Email</p>
+                    <p className="font-semibold">
+                      <a href={`mailto:${selectedResponse.respondentEmail}`} className="link link-primary">
+                        {selectedResponse.respondentEmail}
+                      </a>
+                    </p>
+                  </div>
+                  {selectedResponse.respondentPhone && (
+                    <div>
+                      <p className="text-sm text-gray-500">Téléphone</p>
+                      <p className="font-semibold">
+                        <a href={`tel:${selectedResponse.respondentPhone}`} className="link link-primary">
+                          {selectedResponse.respondentPhone}
+                        </a>
+                      </p>
+                    </div>
+                  )}
+                  <div>
+                    <p className="text-sm text-gray-500">Fonction</p>
+                    <p className="font-semibold">{selectedResponse.respondentRole}</p>
+                  </div>
                 </div>
+              </div>
+
+              {/* Section I */}
+              <div className="divider">Informations Générales du Club</div>
+              <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm text-gray-500">Label Sport Handisport</p>
                   <p className="font-semibold">{selectedResponse.hasLabel}</p>
