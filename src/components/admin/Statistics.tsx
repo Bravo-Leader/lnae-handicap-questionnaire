@@ -119,8 +119,9 @@ export default function Statistics({ responses }: { responses: Response[] }) {
   const supportExpectationsCount: { [key: string]: number } = {}
   responses.forEach((r) => {
     if (Array.isArray(r.supportExpectations)) {
-      r.supportExpectations.forEach((exp) => {
-        const shortExp = exp.substring(0, 40) + (exp.length > 40 ? '...' : '')
+      r.supportExpectations.forEach((exp: any) => {
+        const label = typeof exp === 'string' ? exp : exp.label || ''
+        const shortExp = label.substring(0, 40) + (label.length > 40 ? '...' : '')
         supportExpectationsCount[shortExp] = (supportExpectationsCount[shortExp] || 0) + 1
       })
     }

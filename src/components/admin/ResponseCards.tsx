@@ -164,9 +164,9 @@ export default function ResponseCards({ responses }: { responses: Response[] }) 
                   <p className="text-xs text-gray-500 mb-1">Besoins principaux</p>
                   <div className="flex flex-wrap gap-1">
                     {Array.isArray(response.supportExpectations) &&
-                      response.supportExpectations.slice(0, 2).map((exp: string, idx: number) => (
+                      response.supportExpectations.slice(0, 2).map((exp: any, idx: number) => (
                         <span key={idx} className="badge badge-sm badge-secondary">
-                          {exp.split('(')[0].substring(0, 20)}...
+                          {typeof exp === 'string' ? exp.substring(0, 20) : exp.label?.substring(0, 20) || ''}...
                         </span>
                       ))}
                     {Array.isArray(response.supportExpectations) &&
