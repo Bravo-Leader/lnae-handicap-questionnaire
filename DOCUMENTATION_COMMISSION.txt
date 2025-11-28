@@ -1,0 +1,341 @@
+================================================================================
+     QUESTIONNAIRE COMMISSION HANDICAP - LIGUE NOUVELLE-AQUITAINE D'ÉCHECS
+                            DOCUMENTATION UTILISATEUR
+================================================================================
+
+TABLE DES MATIÈRES
+==================
+1. Introduction
+2. Accès au questionnaire public
+3. Remplissage du questionnaire
+4. Accès au tableau de bord administrateur
+5. Utilisation du tableau de bord
+6. Gestion des administrateurs (Super Admin uniquement)
+7. Export des données
+8. Support et contact
+
+
+================================================================================
+1. INTRODUCTION
+================================================================================
+
+Cette plateforme permet à la Commission Handicap de recueillir des informations
+auprès des clubs d'échecs de Nouvelle-Aquitaine concernant leur expérience et
+leurs besoins en matière d'accueil de personnes en situation de handicap.
+
+L'application comprend deux parties :
+- Un questionnaire public accessible à tous les clubs
+- Un tableau de bord administrateur pour consulter et analyser les réponses
+
+
+================================================================================
+2. ACCÈS AU QUESTIONNAIRE PUBLIC
+================================================================================
+
+URL du questionnaire : https://lnae-handicap.rookit.fr
+
+Le questionnaire est accessible à tous sans authentification.
+Chaque club peut remplir le questionnaire une fois.
+
+
+================================================================================
+3. REMPLISSAGE DU QUESTIONNAIRE
+================================================================================
+
+Le questionnaire se compose de 4 sections :
+
+SECTION 0 : INFORMATIONS DU RÉPONDANT (obligatoire)
+----------------------------------------------------
+- Prénom
+- Nom
+- Email
+- Téléphone (optionnel)
+
+→ Ces informations permettent de vous recontacter si nécessaire.
+
+
+SECTION I : INFORMATIONS GÉNÉRALES (obligatoire)
+-------------------------------------------------
+- Nom du club
+- Fonction du répondant dans le club :
+  * Président
+  * Entraîneur
+  * Animateur
+  * Secrétaire
+  * Autre (à préciser)
+
+- Possession du label "Échecs & Handicap" :
+  * Oui
+  * Non
+  * En cours de démarche
+  * Je ne sais pas
+
+- Si non : Souhait d'accompagnement pour obtenir le label (Oui/Non)
+
+
+SECTION II : EXPÉRIENCE D'ACCUEIL
+----------------------------------
+- Avez-vous déjà accueilli des personnes en situation de handicap ?
+  * Oui
+  * Non
+
+Si OUI :
+- Types de handicaps accueillis (plusieurs choix possibles) :
+  * Handicap moteur
+  * Handicap visuel
+  * Handicap auditif
+  * Handicap mental/psychique
+  * Troubles autistiques
+  * Troubles DYS
+  * Autre (à préciser)
+
+- Public accueilli :
+  * Enfants/Mineurs
+  * Adultes
+
+- Champ libre pour partager votre expérience d'adaptation
+
+
+SECTION III : BESOINS ET ATTENTES
+----------------------------------
+1. Attentes vis-à-vis de la commission (classer par priorité) :
+   - Formation des encadrants
+   - Matériel adapté
+   - Accompagnement personnalisé
+   - Liste de professionnels
+   - Documents pédagogiques
+   - Informations sur le label
+   - Subventions
+   - Autre (à préciser)
+
+2. Matériel adapté possédé :
+   * Pendules adaptées
+   * Échiquiers adaptés
+   * Système de notation adapté
+   * Non
+   * Autre (à préciser)
+
+3. Accès souhaités :
+   * Référent handicap
+   * Liste de professionnels
+   * Documents pédagogiques
+   * Formations
+   * Rien de particulier
+
+4. Commentaires ou difficultés supplémentaires (optionnel)
+
+
+NAVIGATION DANS LE QUESTIONNAIRE
+---------------------------------
+- Utilisez les boutons "Suivant" pour progresser
+- Utilisez "Précédent" pour revenir en arrière
+- Vous ne pouvez avancer que si les champs obligatoires sont remplis
+- Un indicateur de progression vous montre votre avancement
+- Le bouton "Envoyer" n'apparaît qu'à la dernière section
+
+
+================================================================================
+4. ACCÈS AU TABLEAU DE BORD ADMINISTRATEUR
+================================================================================
+
+URL de connexion : https://lnae-handicap.rookit.fr/admin/login
+
+IDENTIFIANTS ADMINISTRATEUR PRINCIPAL :
+Email : admin@echecs-nouvelleaquitaine.fr
+Mot de passe : Admin123!
+
+⚠️ IMPORTANT : Changez ce mot de passe après votre première connexion !
+
+
+================================================================================
+5. UTILISATION DU TABLEAU DE BORD
+================================================================================
+
+Le tableau de bord propose 3 modes de visualisation :
+
+
+MODE LISTE (par défaut)
+-----------------------
+Vue sous forme de tableau avec toutes les réponses.
+
+Informations affichées :
+- Nom du club
+- Fonction du répondant
+- Label Échecs & Handicap
+- Accueil de personnes handicapées
+- Nombre d'actions disponibles
+
+Pour chaque réponse, vous pouvez :
+- Cliquer sur "Voir détails" pour consulter la réponse complète
+
+
+MODE CARTES
+-----------
+Vue en cartes colorées pour une lecture plus visuelle.
+
+Chaque carte affiche :
+- Nom du club
+- Fonction du répondant
+- Statut du label
+- Types de handicaps accueillis (2 premiers)
+- Besoins principaux (2 premiers)
+- Un indicateur du nombre de types de handicaps si > 2
+
+Avantages :
+- Plus visuel et facile à parcourir
+- Permet une vue d'ensemble rapide
+- Idéal pour présentation en réunion
+
+
+MODE STATISTIQUES
+-----------------
+Vue analytique avec graphiques et chiffres clés.
+
+CHIFFRES CLÉS AFFICHÉS :
+- Nombre total de réponses
+- Nombre de clubs avec le label
+- Nombre de clubs ayant accueilli des personnes handicapées
+- Besoins principaux les plus cités
+
+GRAPHIQUES DISPONIBLES :
+1. Statut du label "Échecs & Handicap" (diagramme circulaire)
+2. Expérience d'accueil (diagramme circulaire)
+3. Types de handicaps accueillis (diagramme en barres)
+4. Attentes vis-à-vis de la commission (diagramme en barres)
+5. Matériel adapté possédé (diagramme en barres)
+6. Accès souhaités (diagramme en barres)
+
+Avantages :
+- Vision globale des besoins
+- Facilite la prise de décision
+- Idéal pour les rapports et présentations
+
+
+CHANGEMENT DE VUE
+-----------------
+Utilisez les boutons en haut du tableau de bord :
+- "📋 Liste" : Vue tableau
+- "🎴 Cartes" : Vue cartes
+- "📊 Statistiques" : Vue analytique
+
+
+================================================================================
+6. GESTION DES ADMINISTRATEURS (SUPER ADMIN UNIQUEMENT)
+================================================================================
+
+Si vous êtes Super Administrateur, vous avez accès à un bouton supplémentaire :
+"👥 Gestion Admins"
+
+Cette section permet de :
+- Créer de nouveaux comptes administrateurs
+- Voir la liste des administrateurs existants
+- Définir les droits Super Admin
+
+CRÉATION D'UN ADMINISTRATEUR :
+1. Cliquez sur "Gestion Admins"
+2. Remplissez le formulaire :
+   - Email
+   - Nom
+   - Mot de passe
+   - Cochez "Super Admin" si vous voulez donner tous les droits
+3. Cliquez sur "Créer un administrateur"
+
+SUPPRESSION D'UN ADMINISTRATEUR :
+1. Trouvez l'administrateur dans la liste
+2. Cliquez sur le bouton "Supprimer"
+3. Confirmez la suppression
+
+⚠️ Attention : Vous ne pouvez pas supprimer votre propre compte !
+
+
+================================================================================
+7. EXPORT DES DONNÉES
+================================================================================
+
+En mode Statistiques, deux boutons d'export sont disponibles :
+
+
+EXPORT JSON
+-----------
+Bouton : "📥 Exporter JSON"
+
+- Télécharge toutes les réponses au format JSON
+- Format technique, idéal pour traitement informatique
+- Nom du fichier : questionnaire-handicap-AAAA-MM-JJ.json
+
+
+EXPORT CSV
+----------
+Bouton : "📊 Exporter CSV"
+
+- Télécharge toutes les réponses au format CSV (Excel compatible)
+- Format tableau, idéal pour analyse dans Excel ou LibreOffice
+- Nom du fichier : questionnaire-handicap-AAAA-MM-JJ.csv
+
+Colonnes exportées :
+- Nom du club
+- Fonction
+- Email
+- Téléphone
+- Label
+- A accueilli
+- Types de handicaps
+- Matériel
+- Accès souhaités
+
+
+================================================================================
+8. SUPPORT ET CONTACT
+================================================================================
+
+PROBLÈMES TECHNIQUES
+--------------------
+En cas de problème avec la plateforme :
+1. Vérifiez votre connexion Internet
+2. Actualisez la page (F5)
+3. Essayez de vous déconnecter puis reconnecter
+4. Videz le cache de votre navigateur
+
+Si le problème persiste, contactez le support technique.
+
+
+DONNÉES ET CONTENU
+------------------
+Pour toute question sur les réponses ou les données :
+- Vérifiez d'abord les informations de contact du répondant
+- Contactez directement le club si nécessaire
+
+
+SÉCURITÉ
+--------
+⚠️ BONNES PRATIQUES :
+- Ne partagez jamais vos identifiants
+- Changez régulièrement votre mot de passe
+- Déconnectez-vous après chaque session
+- N'accédez pas au tableau de bord depuis un ordinateur public
+
+
+DONNÉES PERSONNELLES (RGPD)
+---------------------------
+Les données collectées sont :
+- Les coordonnées des répondants
+- Les informations sur les clubs
+- Les expériences et besoins des clubs
+
+Ces données sont :
+- Stockées de manière sécurisée
+- Accessibles uniquement aux administrateurs
+- Utilisées uniquement dans le cadre de la commission handicap
+- Supprimables sur demande
+
+
+================================================================================
+                              FIN DE LA DOCUMENTATION
+================================================================================
+
+Version : 1.0
+Date : 28 novembre 2024
+Plateforme : https://lnae-handicap.rookit.fr
+
+Pour toute suggestion d'amélioration de cette documentation, n'hésitez pas
+à contacter l'équipe technique.

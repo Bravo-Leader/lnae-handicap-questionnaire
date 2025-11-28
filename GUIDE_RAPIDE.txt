@@ -1,0 +1,82 @@
+================================================================================
+     GUIDE RAPIDE - QUESTIONNAIRE COMMISSION HANDICAP
+                  Ligue Nouvelle-Aquitaine d'Échecs
+================================================================================
+
+🌐 ACCÈS
+--------
+Questionnaire public : https://lnae-handicap.rookit.fr
+Admin (connexion)    : https://lnae-handicap.rookit.fr/admin/login
+
+
+🔑 IDENTIFIANTS ADMINISTRATEUR
+-------------------------------
+Email        : admin@echecs-nouvelleaquitaine.fr
+Mot de passe : Admin123!
+
+⚠️ Changez ce mot de passe après votre première connexion !
+
+
+📋 LE QUESTIONNAIRE (4 SECTIONS)
+---------------------------------
+Section 0 : Informations du répondant (prénom, nom, email, téléphone)
+Section I : Informations du club (nom, fonction, label Échecs & Handicap)
+Section II : Expérience d'accueil (types de handicaps, public, bonnes pratiques)
+Section III : Besoins et attentes (formations, matériel, accompagnement)
+
+
+🎛️ TABLEAU DE BORD ADMINISTRATEUR (3 VUES)
+-------------------------------------------
+
+1. MODE LISTE 📋
+   - Vue tableau avec toutes les réponses
+   - Recherche par club, nom ou email
+   - Bouton "Détails" pour voir la réponse complète
+
+2. MODE CARTES 🎴
+   - Vue visuelle avec cartes colorées
+   - Aperçu rapide des besoins de chaque club
+   - Idéal pour présentation en réunion
+
+3. MODE STATISTIQUES 📊
+   - Chiffres clés (total réponses, clubs avec label, etc.)
+   - 6 graphiques : label, expérience, handicaps, attentes, matériel, accès
+   - Boutons d'export : JSON et CSV
+
+
+📥 EXPORT DES DONNÉES
+---------------------
+En mode Statistiques, deux boutons :
+- "📥 Exporter JSON" : format technique pour traitement informatique
+- "📊 Exporter CSV" : format tableau pour Excel/LibreOffice
+
+
+👥 GESTION DES ADMINS (SUPER ADMIN UNIQUEMENT)
+-----------------------------------------------
+Bouton "👥 Gestion Admins" pour :
+- Créer de nouveaux comptes administrateurs
+- Définir les droits Super Admin
+- Supprimer des administrateurs
+
+
+🛡️ SÉCURITÉ & BONNES PRATIQUES
+--------------------------------
+✓ Ne partagez jamais vos identifiants
+✓ Changez régulièrement votre mot de passe
+✓ Déconnectez-vous après chaque session
+✓ N'accédez pas depuis un ordinateur public
+
+
+📞 EN CAS DE PROBLÈME
+----------------------
+1. Vérifiez votre connexion Internet
+2. Actualisez la page (F5)
+3. Déconnectez-vous puis reconnectez-vous
+4. Videz le cache de votre navigateur
+5. Contactez le support technique si le problème persiste
+
+
+================================================================================
+Version : 1.0 | Date : 28 novembre 2024
+Plateforme : https://lnae-handicap.rookit.fr
+================================================================================

@@ -209,9 +209,9 @@ export default function ResponseList({ responses }: { responses: Response[] }) {
                 <p className="text-sm text-gray-500 mb-2">Attentes d'accompagnement</p>
                 <div className="flex flex-wrap gap-2">
                   {Array.isArray(selectedResponse.supportExpectations) &&
-                    selectedResponse.supportExpectations.map((exp: string, idx: number) => (
+                    selectedResponse.supportExpectations.map((exp: any, idx: number) => (
                       <span key={idx} className="badge badge-secondary">
-                        {exp}
+                        {typeof exp === 'string' ? exp : exp.label || ''}
                       </span>
                     ))}
                 </div>
