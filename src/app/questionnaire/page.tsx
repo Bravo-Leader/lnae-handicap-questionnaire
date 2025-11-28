@@ -83,11 +83,32 @@ export default function QuestionnairePage() {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [currentSection, setCurrentSection] = useState(0)
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<FormData>()
+  const { register, handleSubmit, watch, formState: { errors }, trigger } = useForm<FormData>()
 
   const watchRole = watch('respondentRole')
   const watchHasLabel = watch('hasLabel')
   const watchHasWelcomedDisabled = watch('hasWelcomedDisabled')
+
+  // Validate current section before proceeding
+  const validateAndProceed = async (nextSection: number) => {
+    let fieldsToValidate: (keyof FormData)[] = []
+
+    // Define which fields to validate for each section
+    if (currentSection === 0) {
+      fieldsToValidate = ['respondentFirstName', 'respondentLastName', 'respondentEmail']
+    } else if (currentSection === 1) {
+      fieldsToValidate = ['clubName', 'respondentRole', 'hasLabel']
+    } else if (currentSection === 2) {
+      fieldsToValidate = ['hasWelcomedDisabled']
+    }
+
+    // Trigger validation for the current section's fields
+    const isValid = await trigger(fieldsToValidate)
+
+    if (isValid) {
+      setCurrentSection(nextSection)
+    }
+  }
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true)
@@ -240,7 +261,7 @@ export default function QuestionnairePage() {
                   <div className="card-actions justify-end mt-6">
                     <button
                       type="button"
-                      onClick={() => setCurrentSection(1)}
+                      onClick={() => validateAndProceed(1)}
                       className="btn btn-primary"
                     >
                       Suivant
@@ -383,7 +404,7 @@ export default function QuestionnairePage() {
                     </button>
                     <button
                       type="button"
-                      onClick={() => setCurrentSection(2)}
+                      onClick={() => validateAndProceed(2)}
                       className="btn btn-primary"
                     >
                       Suivant
@@ -518,7 +539,7 @@ export default function QuestionnairePage() {
                     </button>
                     <button
                       type="button"
-                      onClick={() => setCurrentSection(3)}
+                      onClick={() => validateAndProceed(3)}
                       className="btn btn-primary"
                     >
                       Suivant
